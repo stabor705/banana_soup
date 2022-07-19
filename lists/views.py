@@ -29,3 +29,6 @@ class AddListView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
+class DeleteListView(DeleteView):
+    model = List
+    success_url = reverse_lazy('lists')
