@@ -16,10 +16,14 @@
             <a href="{% url 'home' %}" class="navbar-brand">Banana Soup</a>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'add-list' %}" class="nav-link">+ New</a>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown">{{ user.username }}</a>
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a href="#" class="dropdown-item">Log out</a></li>
+                        <li><a href="{% url 'logout' %}" class="dropdown-item">Log out</a></li>
                     </ul>
                 </li>
                 {% else %}

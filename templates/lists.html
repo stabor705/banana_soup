@@ -6,12 +6,28 @@
 
 {% for list in object_list %}
 <div class="card">
-    <div class="card-header">{{ list.name }}</div>
+    <div class="card-header">
+        {{ list.name }}
+        <button type="button" class="btn-close"></button>
+    </div>
     <ul class="list-group">
         {% for entry in list.entries.all %}
-        <li class="list-group-item">{{ entry.text }}</li>
+        <li class="list-group-item">
+            {{ entry.text }}
+            <form action="{% url 'delete-entry' entry.pk %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="Remove">
+            </form>
+        </li>
         {% endfor %}
     </ul>
+    <div class="card-footer">
+        <form action="{% url 'add-entry' %}" method="post">
+            {% csrf_token %}
+            {{ list.make_form }}
+            <input type="submit" value="Add" class="btn btn-success">
+        </form>
+    </div>
 </div>
 {% endfor %}
 

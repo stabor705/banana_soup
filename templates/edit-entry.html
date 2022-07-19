@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit entry{% endblock title %}
+
+{% block contents%}
+<h1>Edit entry</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Update" class="btn btn-primary">
+    <a href="{% url 'lists' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock contents%}
